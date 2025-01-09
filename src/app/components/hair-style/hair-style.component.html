@@ -1,0 +1,197 @@
+<div class="container mt-4">
+  <h1 class="text-center">Hair Styles</h1>
+
+  <!-- Button to open the modal -->
+  <div class="text-end mb-3">
+    <button
+      type="button"
+      class="btn btn-danger"
+      data-bs-toggle="modal"
+      data-bs-target="#addHairStyleModal"
+    >
+      Add New HairStyle
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="addHairStyleModal"
+    tabindex="-1"
+    aria-labelledby="addHairStyleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addHairStyleModalLabel">Add New HairStyle</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addHairStyle()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input
+                id="name"
+                class="form-control"
+                [(ngModel)]="newHairStyle.name"
+                name="name"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description:</label>
+              <input
+                id="description"
+                class="form-control"
+                [(ngModel)]="newHairStyle.description"
+                name="description"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="hairType" class="form-label">Hair Type (comma-separated):</label>
+              <input
+                id="hairType"
+                class="form-control"
+                [(ngModel)]="newHairStyle.hairType"
+                name="hairType"
+                placeholder="e.g., 1,2"
+                required
+              />
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="length" class="form-label">Length:</label>
+                <input
+                  id="length"
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="newHairStyle.length"
+                  name="length"
+                  required
+                />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="sex" class="form-label">Sex:</label>
+                <select
+                  id="sex"
+                  class="form-select"
+                  [(ngModel)]="newHairStyle.sex"
+                  name="sex"
+                  required
+                >
+                  <option [value]="1">Male</option>
+                  <option [value]="2">Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="averageTime" class="form-label">Average Time:</label>
+                <input
+                  id="averageTime"
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="newHairStyle.averageTime"
+                  name="averageTime"
+                  required
+                />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="maintenanceLevel" class="form-label">Maintenance Level:</label>
+                <input
+                  id="maintenanceLevel"
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="newHairStyle.maintenanceLevel"
+                  name="maintenanceLevel"
+                  required
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="createdBy" class="form-label">Created By:</label>
+                <input
+                  id="createdBy"
+                  class="form-control"
+                  [(ngModel)]="newHairStyle.createdBy"
+                  name="createdBy"
+                  required
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="modifiedBy" class="form-label">Modified By:</label>
+                <input
+                  id="modifiedBy"
+                  class="form-control"
+                  [(ngModel)]="newHairStyle.modifiedBy"
+                  name="modifiedBy"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="isActive" class="form-label">Is Active:</label>
+              <select
+                id="isActive"
+                class="form-select"
+                [(ngModel)]="newHairStyle.isActive"
+                name="isActive"
+              >
+                <option [value]="true">Yes</option>
+                <option [value]="false">No</option>
+              </select>
+            </div>
+            <div class="text-end">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- List of HairStyles -->
+  <div>
+    <h2 class="mt-4">Hair Styles List</h2>
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Hair Type</th>
+        <th>Length</th>
+        <th>Sex</th>
+        <th>Average Time</th>
+        <th>Maintenance Level</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let hairStyle of hairStyles">
+        <td>{{ hairStyle.name }}</td>
+        <td>{{ hairStyle.description }}</td>
+        <td>{{ hairStyle.hairType ? hairStyle.hairType : '' }}</td>
+        <td>{{ hairStyle.length }}</td>
+        <td>{{ hairStyle.sex === 1 ? 'Male' : 'Female' }}</td>
+        <td>{{ hairStyle.averageTime }}</td>
+        <td>{{ hairStyle.maintenanceLevel }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

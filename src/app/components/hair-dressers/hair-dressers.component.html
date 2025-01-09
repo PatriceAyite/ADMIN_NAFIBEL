@@ -1,0 +1,155 @@
+<div class="container mt-5">
+  <!-- Header Section -->
+  <h1 class="text-center mb-5">Hairdressers</h1>
+
+  <!-- Button to Add New Hairdresser -->
+  <button class="btn btn-danger fw-bold mb-2" data-bs-toggle="modal" data-bs-target="#addHairdresserModal">New Hairdresser</button>
+
+  <!-- Table Displaying Hairdresser Information -->
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Profile Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Profile Text</th>
+      <th scope="col">Hairstyles</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Example Row -->
+    <tr>
+      <th scope="row">1</th>
+      <td>
+        <img src="#" alt="Profile Image" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+      </td>
+      <td>John Doe</td>
+      <td>Expert in modern cuts and styles.</td>
+      <td>Elegant Waves, Curly Chic</td>
+      <td>
+        <button class="btn btn-outline-dark btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editHairdresserModal">Edit</button>
+        <button class="btn btn-outline-danger btn-sm">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal for Adding New Hairdresser -->
+  <div class="modal fade" id="addHairdresserModal" tabindex="-1" aria-labelledby="addHairdresserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addHairdresserModalLabel">Add New Hairdresser</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <!-- Profile Image -->
+              <div class="col-md-6">
+                <h5 class="text-center mb-3">Profile Image</h5>
+                <div class="text-center mb-3">
+                  <img src="#" id="newProfileImgPreview" class="img-fluid border border-dark mb-3" alt="Profile Image" style="width: 100%; height: auto; object-fit: cover;">
+                  <input type="file" id="newProfileImageUpload" class="form-control border-dark" accept="image/*" onchange="previewNewImage(event)">
+                </div>
+              </div>
+
+              <!-- Hairdresser Details -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="newHairdresserName" class="form-label">Name</label>
+                  <input type="text" class="form-control border-dark" id="newHairdresserName" placeholder="Enter name">
+                </div>
+                <div class="mb-3">
+                  <label for="newProfileText" class="form-label">Profile Text</label>
+                  <textarea class="form-control border-dark" id="newProfileText" rows="3" placeholder="Enter profile description"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="newHairstyles" class="form-label">Hairstyles</label>
+                  <select multiple class="form-select border-dark" id="newHairstyles">
+                    <option>Elegant Waves</option>
+                    <option>Curly Chic</option>
+                    <option>Modern Updo</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-danger">Add Hairdresser</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Editing Hairdresser -->
+  <div class="modal fade" id="editHairdresserModal" tabindex="-1" aria-labelledby="editHairdresserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editHairdresserModalLabel">Edit Hairdresser</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <!-- Profile Image -->
+              <div class="col-md-6">
+                <h5 class="text-center mb-3">Profile Image</h5>
+                <div class="text-center mb-3">
+                  <img src="#" id="editProfileImgPreview" class="img-fluid border border-dark mb-3" alt="Profile Image" style="width: 100%; height: auto; object-fit: cover;">
+                  <input type="file" id="editProfileImageUpload" class="form-control border-dark" accept="image/*" onchange="previewEditImage(event)">
+                </div>
+              </div>
+
+              <!-- Hairdresser Details -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="editHairdresserName" class="form-label">Name</label>
+                  <input type="text" class="form-control border-dark" id="editHairdresserName" placeholder="Enter name">
+                </div>
+                <div class="mb-3">
+                  <label for="editProfileText" class="form-label">Profile Text</label>
+                  <textarea class="form-control border-dark" id="editProfileText" rows="3" placeholder="Enter profile description"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="editHairstyles" class="form-label">Hairstyles</label>
+                  <select multiple class="form-select border-dark" id="editHairstyles">
+                    <option>Elegant Waves</option>
+                    <option>Curly Chic</option>
+                    <option>Modern Updo</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-dark">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Preview function for "New Hairdresser"
+  function previewNewImage(event) {
+    const imgPreview = document.getElementById('newProfileImgPreview');
+    imgPreview.src = URL.createObjectURL(event.target.files[0]);
+  }
+
+  // Preview function for "Edit Hairdresser"
+  function previewEditImage(event) {
+    const imgPreview = document.getElementById('editProfileImgPreview');
+    imgPreview.src = URL.createObjectURL(event.target.files[0]);
+  }
+</script>

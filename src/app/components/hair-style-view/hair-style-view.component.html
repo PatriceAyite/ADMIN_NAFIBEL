@@ -1,0 +1,88 @@
+<div class="container mt-4">
+  <h1>Hair Style Details</h1>
+  <div *ngIf="hairStyle">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        [(ngModel)]="hairStyle.name"
+        name="name"
+        readonly
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        [(ngModel)]="hairStyle.description"
+        name="description"
+        readonly
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="hairType" class="form-label">Hair Type</label>
+      <select
+        id="hairType"
+        class="form-select"
+        [(ngModel)]="hairStyle.hairType"
+        name="hairType"
+        multiple
+        disabled
+      >
+        <option *ngFor="let type of hairStyle.hairType" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="length" class="form-label">Length</label>
+      <input
+        type="number"
+        id="length"
+        class="form-control"
+        [(ngModel)]="hairStyle.length"
+        name="length"
+        readonly
+      />
+    </div>
+    <div class="mb-3">
+      <label for="sex" class="form-label">Sex</label>
+      <select
+        id="sex"
+        class="form-select"
+        [(ngModel)]="hairStyle.sex"
+        name="sex"
+        disabled
+      >
+        <option [value]="0">Male</option>
+        <option [value]="1">Female</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="averageTime" class="form-label">Average Time (mins)</label>
+      <input
+        type="number"
+        id="averageTime"
+        class="form-control"
+        [(ngModel)]="hairStyle.averageTime"
+        name="averageTime"
+        readonly
+      />
+    </div>
+    <div class="mb-3">
+      <label for="maintenanceLevel" class="form-label">Maintenance Level</label>
+      <input
+        type="number"
+        id="maintenanceLevel"
+        class="form-control"
+        [(ngModel)]="hairStyle.maintenanceLevel"
+        name="maintenanceLevel"
+        readonly
+      />
+    </div>
+
+    <button class="btn btn-warning" (click)="editHairStyle()">Edit</button>
+    <button class="btn btn-danger" (click)="deleteHairStyle()">Delete</button>
+  </div>
+</div>

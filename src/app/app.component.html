@@ -1,0 +1,89 @@
+<!-- Navbar with Profile Section -->
+<nav class="navbar navbar-expand-lg navbar-light bg-dark px-3">
+  <div class="container-fluid">
+    <!-- Navbar Brand -->
+    <a class="navbar-brand ms-5 text-danger" href="#">
+      <img src="NafiBellLogo1.png" alt="NafiBel" style="height: 45px">Nafibel
+    </a>
+
+    <!-- Navbar Right Section -->
+    <div class="d-flex align-items-center">
+      <!-- Profile Dropdown -->
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-light" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://via.placeholder.com/40" alt="Profile Picture" class="rounded-circle me-2" width="40" height="40">
+          <span>Profil</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#">Paramètres</a></li>
+          <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Fixed Menu Icon -->
+<button class="btn btn-outline-light position-fixed top-0 start-0 m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-label="Menu">
+  <i class="bi bi-list"></i>
+</button>
+
+<!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-start bg-dark" id="offcanvasSidebar">
+  <div class="offcanvas-header">
+    <h1 class="offcanvas-title text-danger text-decoration-underline">Nafibel</h1>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <!-- Offcanvas Sidebar with Icons and Extra Space -->
+  <div class="offcanvas-body">
+    <!-- List of Items with Icons -->
+    <ul class="list-unstyled">
+      <li class="mb-5">
+        <a routerLink="/dashboard" class="d-flex align-items-center text-decoration-none text-light">
+          <i class="bi bi-house-door me-4" style="font-size: 1.75rem;"></i>
+          <span class="fs-4">Dashboard</span>
+        </a>
+      </li>
+      <li class="mb-5">
+        <a routerLink="/hairdresser" class="d-flex align-items-center text-decoration-none text-light">
+          <i class="bi bi-person-fill me-4" style="font-size: 1.75rem;"></i>
+          <span class="fs-4">Hairdressers</span>
+        </a>
+      </li>
+      <li class="mb-5">
+        <a routerLink="/hairstyle" class="d-flex align-items-center text-decoration-none text-light">
+          <i class="bi bi-brush me-4" style="font-size: 1.75rem;"></i>
+          <span class="fs-4">Hairstyles</span>
+        </a>
+      </li>
+      <li class="mb-5">
+        <a routerLink="/client" class="d-flex align-items-center text-decoration-none text-light">
+          <i class="bi bi-person-fill me-4" style="font-size: 1.75rem;"></i>
+          <span class="fs-4">Clients</span>
+        </a>
+      </li>
+      <li class="mb-5">
+        <a routerLink="/appointment" class="d-flex align-items-center text-decoration-none text-light">
+          <i class="bi bi-calendar-check me-4" style="font-size: 1.75rem;"></i>
+          <span class="fs-4">Appointments</span>
+        </a>
+      </li>
+    </ul>
+
+    <hr class="my-5 text-light">
+
+    <!-- Log out Button -->
+    <button class="btn btn-outline-danger w-100" style="font-size: 1.3rem;">
+      Log out
+    </button>
+  </div>
+</div>
+
+<!-- Main Content Section -->
+<div class="container-fluid" style="margin-top: 80px;"> <!-- Adjust margin-top to avoid navbar overlap -->
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

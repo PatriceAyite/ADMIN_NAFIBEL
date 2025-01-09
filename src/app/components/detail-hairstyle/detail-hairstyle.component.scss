@@ -1,0 +1,28 @@
+.category-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.category {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.category.selected-category {
+  background-color: #007bff;
+  color: white;
+}
+
+.uploaded-images {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
