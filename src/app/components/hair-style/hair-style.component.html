@@ -61,7 +61,9 @@
                 class="form-control"
                 [(ngModel)]="newHairStyle.hairType"
                 name="hairType"
-                placeholder="e.g., 1,2"
+                placeholder="e.g., 0,3"
+                [max]="3"
+                [min]="0"
                 required
               />
             </div>
@@ -74,6 +76,8 @@
                   class="form-control"
                   [(ngModel)]="newHairStyle.length"
                   name="length"
+                  [max]="2"
+                  [min]="0"
                   required
                 />
               </div>
@@ -111,6 +115,8 @@
                   class="form-control"
                   [(ngModel)]="newHairStyle.maintenanceLevel"
                   name="maintenanceLevel"
+                  [max]="2"
+                  [min]="0"
                   required
                 />
               </div>
