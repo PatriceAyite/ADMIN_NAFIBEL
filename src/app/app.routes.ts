@@ -10,6 +10,7 @@ import {HairStyleComponent} from './components/hair-style/hair-style.component';
 export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'hairstyle', component:HairStyleComponent },
+  { path: 'detail-hairstyle', component: DetailHairstyleComponent },
   { path: 'hairdresser', component: HairDressersComponent },
   { path: 'client', component: ClientsComponent },
   { path: 'appointment', component: AppointmentsComponent },

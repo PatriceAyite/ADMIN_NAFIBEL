@@ -21,6 +21,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./hair-style.component.scss'],
 })
 export class HairStyleComponent implements OnInit {
+  showSuccessAlert = true;
   hairStyles: HairStyleModel[] = [];
   newHairStyle: Partial<HairStyleModel> = {
     hairType: [],
@@ -57,6 +58,7 @@ export class HairStyleComponent implements OnInit {
       error: (err) => console.error('Erreur lors de la récupération des coiffures :', err),
     });
   }
+
 
   addHairStyle(): void {
     const exists = this.hairStyles.some(

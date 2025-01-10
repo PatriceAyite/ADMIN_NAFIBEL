@@ -5,7 +5,7 @@
   <div class=" mb-3">
     <button
       type="button"
-      class="btn btn-outline-dark"
+      class="btn btn-outline-danger"
       data-bs-toggle="modal"
       data-bs-target="#addHairStyleModal"
     >
@@ -23,8 +23,9 @@
   >
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addHairStyleModalLabel">Add New HairStyle</h5>
+        <div class="modal-header bg-danger">
+          <!-- Affichage conditionnel de l'alerte de succès -->
+          <h5 class="modal-title text-light" id="addHairStyleModalLabel">Add New HairStyle</h5>
           <button
             type="button"
             class="btn-close"
@@ -35,7 +36,7 @@
         <div class="modal-body">
           <form (ngSubmit)="addHairStyle()">
             <div class="mb-3">
-              <label for="name" class="form-label">Name:</label>
+              <label for="name" class="form-label">Name:*</label>
               <input
                 id="name"
                 class="form-control"
@@ -45,7 +46,7 @@
               />
             </div>
             <div class="mb-3">
-              <label for="description" class="form-label">Description:</label>
+              <label for="description" class="form-label">Description:*</label>
               <input
                 id="description"
                 class="form-control"
@@ -55,21 +56,25 @@
               />
             </div>
             <div class="mb-3">
-              <label for="hairType" class="form-label">Hair Type (comma-separated):</label>
-              <input
+              <label for="hairType" class="form-label">Hair Type (comma-separated):*</label>
+              <select
                 id="hairType"
-                class="form-control"
+                class="form-select"
                 [(ngModel)]="newHairStyle.hairType"
                 name="hairType"
-                placeholder="e.g., 0,3"
-                [max]="3"
-                [min]="0"
                 required
-              />
+              >
+                <option [value]="0"> Straight</option>
+                <option [value]="1">Wavy</option>
+                <option [value]="2">Curly</option>
+                <option [value]="3">Coily</option>
+              </select>
+
+
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="length" class="form-label">Length:</label>
+                <label for="length" class="form-label">Length:*</label>
                 <input
                   id="length"
                   type="number"
@@ -82,7 +87,7 @@
                 />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="sex" class="form-label">Sex:</label>
+                <label for="sex" class="form-label">Sex:*</label>
                 <select
                   id="sex"
                   class="form-select"
@@ -90,14 +95,15 @@
                   name="sex"
                   required
                 >
-                  <option [value]="1">Male</option>
-                  <option [value]="2">Female</option>
+                  <option [value]="0">Male</option>
+                  <option [value]="1">Female</option>
+                  <option [value]="2">Autre</option>
                 </select>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="averageTime" class="form-label">Average Time:</label>
+                <label for="averageTime" class="form-label">Average Time:*</label>
                 <input
                   id="averageTime"
                   type="number"
@@ -108,7 +114,7 @@
                 />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="maintenanceLevel" class="form-label">Maintenance Level:</label>
+                <label for="maintenanceLevel" class="form-label">Maintenance Level:*</label>
                 <input
                   id="maintenanceLevel"
                   type="number"
@@ -123,7 +129,7 @@
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="createdBy" class="form-label">Created By:</label>
+                <label for="createdBy" class="form-label">Created By:*</label>
                 <input
                   id="createdBy"
                   class="form-control"
@@ -135,7 +141,7 @@
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="modifiedBy" class="form-label">Modified By:</label>
+                <label for="modifiedBy" class="form-label">Modified By:*</label>
                 <input
                   id="modifiedBy"
                   class="form-control"
@@ -145,7 +151,7 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="isActive" class="form-label">Is Active:</label>
+              <label for="isActive" class="form-label">Is Active:*</label>
               <select
                 id="isActive"
                 class="form-select"
@@ -159,12 +165,14 @@
             <div class="text-end">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn btn-dark col-2 me-2"
                 data-bs-dismiss="modal"
+
               >
                 Close
               </button>
-              <button type="submit" class="btn btn-danger">Add</button>
+              <button type="submit" class="btn btn-danger col-2">Add</button>
+
             </div>
           </form>
         </div>
@@ -173,59 +181,59 @@
   </div>
 
   <!-- List of HairStyles -->
-  <div class="table-container mat-elevation-z8">
+  <div class="table-container mat-elevation-z8 bg-light">
     <table mat-table [dataSource]="dataSource" class="custom-table mat-table" matSort>
       <!-- Numéro de ligne -->
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center">#</th>
-        <td mat-cell *matCellDef="let row; let i = index" class="text-center"> {{ i + 1 }} </td>
+        <th mat-header-cell *matHeaderCellDef >#</th>
+        <td mat-cell *matCellDef="let row; let i = index" > {{ i + 1 }} </td>
       </ng-container>
 
       <!-- Nom -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Name </th>
-        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.name }} </td>
+        <th mat-header-cell *matHeaderCellDef > Name </th>
+        <td mat-cell *matCellDef="let element" > {{ element.name }} </td>
       </ng-container>
 
       <!-- Description -->
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Description </th>
-        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.description }} </td>
+        <th mat-header-cell *matHeaderCellDef > Description </th>
+        <td mat-cell *matCellDef="let element" > {{ element.description }} </td>
       </ng-container>
 
       <!-- Hair Type -->
       <ng-container matColumnDef="hairType">
-        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Hair Type </th>
-        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.hairType || '' }} </td>
+        <th mat-header-cell *matHeaderCellDef> HairType </th>
+        <td mat-cell *matCellDef="let element"> {{ element.hairType || '' }} </td>
       </ng-container>
 
       <!-- Length -->
       <ng-container matColumnDef="length">
-        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Length </th>
-        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.length }} </td>
+        <th mat-header-cell *matHeaderCellDef > Length </th>
+        <td mat-cell *matCellDef="let element" > {{ element.length }} </td>
       </ng-container>
 
       <!-- Sex -->
       <ng-container matColumnDef="sex">
-        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Sex </th>
-        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.sex === 1 ? 'Male' : 'Female' }} </td>
+        <th mat-header-cell *matHeaderCellDef > Sex </th>
+        <td mat-cell *matCellDef="let element" > {{ element.sex === 1 ? 'Male' : 'Female' }} </td>
       </ng-container>
 
       <!-- Average Time -->
       <ng-container matColumnDef="averageTime">
-        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Average Time </th>
-        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.averageTime }} </td>
+        <th mat-header-cell *matHeaderCellDef > Average Time </th>
+        <td mat-cell *matCellDef="let element" > {{ element.averageTime }} </td>
       </ng-container>
 
       <!-- Maintenance Level -->
       <ng-container matColumnDef="maintenanceLevel">
-        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Maintenance Level </th>
-        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.maintenanceLevel }} </td>
+        <th mat-header-cell *matHeaderCellDef > Maintenance Level </th>
+        <td mat-cell *matCellDef="let element" > {{ element.maintenanceLevel }} </td>
       </ng-container>
 
       <!-- Action -->
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Action </th>
+        <th mat-header-cell *matHeaderCellDef class="text-center"> Action </th>
         <td mat-cell *matCellDef="let element">
           <button class="btn btn-outline-danger">View</button>
         </td>
