@@ -2,3 +2,51 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* Conteneur de la table */
+.table-container {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Table */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+/* En-têtes de colonnes */
+.header-cell {
+  background-color: #f5f5f5;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Cellules de données */
+.data-cell {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  color: white;
+}
+
+/* Lignes des données */
+.data-row:hover {
+  background-color: #f9f9f9;
+}
+
+/* Style de la pagination */
+.paginator {
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 16px;
+}

@@ -2,10 +2,10 @@
   <h1 class="text-center">Hair Styles</h1>
 
   <!-- Button to open the modal -->
-  <div class="text-end mb-3">
+  <div class=" mb-3">
     <button
       type="button"
-      class="btn btn-danger"
+      class="btn btn-outline-dark"
       data-bs-toggle="modal"
       data-bs-target="#addHairStyleModal"
     >
@@ -164,7 +164,7 @@
               >
                 Close
               </button>
-              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="submit" class="btn btn-danger">Add</button>
             </div>
           </form>
         </div>
@@ -173,31 +173,77 @@
   </div>
 
   <!-- List of HairStyles -->
-  <div>
-    <h2 class="mt-4">Hair Styles List</h2>
-    <table class="table table-bordered table-striped">
-      <thead class="table-dark">
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Hair Type</th>
-        <th>Length</th>
-        <th>Sex</th>
-        <th>Average Time</th>
-        <th>Maintenance Level</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let hairStyle of hairStyles">
-        <td>{{ hairStyle.name }}</td>
-        <td>{{ hairStyle.description }}</td>
-        <td>{{ hairStyle.hairType ? hairStyle.hairType : '' }}</td>
-        <td>{{ hairStyle.length }}</td>
-        <td>{{ hairStyle.sex === 1 ? 'Male' : 'Female' }}</td>
-        <td>{{ hairStyle.averageTime }}</td>
-        <td>{{ hairStyle.maintenanceLevel }}</td>
-      </tr>
-      </tbody>
+  <div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="custom-table mat-table" matSort>
+      <!-- Numéro de ligne -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center">#</th>
+        <td mat-cell *matCellDef="let row; let i = index" class="text-center"> {{ i + 1 }} </td>
+      </ng-container>
+
+      <!-- Nom -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Name </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.name }} </td>
+      </ng-container>
+
+      <!-- Description -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Description </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.description }} </td>
+      </ng-container>
+
+      <!-- Hair Type -->
+      <ng-container matColumnDef="hairType">
+        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Hair Type </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.hairType || '' }} </td>
+      </ng-container>
+
+      <!-- Length -->
+      <ng-container matColumnDef="length">
+        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Length </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.length }} </td>
+      </ng-container>
+
+      <!-- Sex -->
+      <ng-container matColumnDef="sex">
+        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Sex </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.sex === 1 ? 'Male' : 'Female' }} </td>
+      </ng-container>
+
+      <!-- Average Time -->
+      <ng-container matColumnDef="averageTime">
+        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Average Time </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.averageTime }} </td>
+      </ng-container>
+
+      <!-- Maintenance Level -->
+      <ng-container matColumnDef="maintenanceLevel">
+        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Maintenance Level </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{ element.maintenanceLevel }} </td>
+      </ng-container>
+
+      <!-- Action -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="fs-5 text-center"> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-outline-danger">View</button>
+        </td>
+      </ng-container>
+
+
+      <!-- Header Row -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <!-- Data Rows -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <!-- Paginator -->
+    <mat-paginator
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
   </div>
+
 </div>
