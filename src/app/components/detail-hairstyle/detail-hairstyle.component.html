@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <h2>Hair Styles</h2>
+  <ul class="list-group">
+    <li
+      class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor="let hairStyle of hairStyles"
+    >
+      {{ hairStyle.name }}
+      <button
+        class="btn btn-primary btn-sm"
+        (click)="viewHairStyleDetails(hairStyle.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#viewHairStyleModal"
+      >
+        View
+      </button>
+    </li>
+  </ul>
+</div>
+
+<!-- Modal Bootstrap -->
+<div
+  class="modal fade"
+  id="viewHairStyleModal"
+  tabindex="-1"
+  aria-labelledby="viewHairStyleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewHairStyleModalLabel">Hair Style Details</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedHairStyle">
+        <p><strong>Name:</strong> {{ selectedHairStyle.name }}</p>
+        <p><strong>Description:</strong> {{ selectedHairStyle.description }}</p>
+        <p><strong>Hair Type:</strong> {{ selectedHairStyle.hairType }}</p>
+        <p><strong>Length:</strong> {{ selectedHairStyle.length }}</p>
+        <p><strong>Average Time:</strong> {{ selectedHairStyle.averageTime }} minutes</p>
+        <p><strong>Maintenance Level:</strong> {{ selectedHairStyle.maintenanceLevel }}</p>
+        <p><strong>Created By:</strong> {{ selectedHairStyle.createdBy }}</p>
+        <p><strong>Modified By:</strong> {{ selectedHairStyle.modifiedBy || 'N/A' }}</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

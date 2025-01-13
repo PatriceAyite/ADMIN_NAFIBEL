@@ -1,37 +1,50 @@
-import {Component, ElementRef, NgModule, OnInit} from '@angular/core';
-import {FormGroup, FormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DetailHairStyleServiceService} from '../../services/detail-hair-style-service.service';
-
-
+import { Component, OnInit } from '@angular/core';
+import { DetailHairStyleServiceService } from '../../services/detail-hair-style-service.service';
+import {HairStyleModel} from '../../Models/HairStyleModel';
+import {NgFor, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-detail-hairstyle',
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-  ],
-  standalone: true,
+  standalone:true,
   templateUrl: './detail-hairstyle.component.html',
-  styleUrl: './detail-hairstyle.component.scss'
+  styleUrls: ['./detail-hairstyle.component.scss'],
+  imports: [
+    NgIf, NgFor
+  ],
+  // Votre style SCSS
 })
 export class DetailHairstyleComponent implements OnInit {
+  hairStyles: HairStyleModel[] = [];  // Pour stocker la liste des coiffures
+  selectedHairStyle: HairStyleModel | null = null;  // Variable pour la coiffure sélectionnée
 
-  constructor(private detailHairStyleServiceService: DetailHairStyleServiceService) {}
+  constructor(private detailHairStyleService: DetailHairStyleServiceService) {}
 
   ngOnInit(): void {
+    this.getHairStyles();  // Récupère toutes les coiffures au démarrage
   }
 
-  getHairStyleById(id: string): void {
-    this.detailHairStyleServiceService.getById(id).subscribe({
+  // Méthode pour récupérer toutes les coiffures
+  getHairStyles(): void {
+    this.detailHairStyleService.getAll().subscribe({
       next: (data) => {
-        console.log('Détails de la coiffure récupérés :', data);
+        this.hairStyles = data;  // Stocke les coiffures récupérées dans la variable
+        console.log('Coiffures récupérées :', data);
       },
-      error: (err) => console.error('Erreur lors de la récupération de la coiffure :', err),
+      error: (err) => {
+        console.error('Erreur lors de la récupération des coiffures :', err);
+      },
     });
   }
 
-
+  // Méthode pour afficher les détails de la coiffure sélectionnée
+  viewHairStyleDetails(id: string): void {
+    this.detailHairStyleService.getById(id).subscribe({
+      next: (data) => {
+        this.selectedHairStyle = data;  // Met à jour la coiffure sélectionnée
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération des détails de la coiffure :', err);
+      },
+    });
+  }
 }

@@ -2,7 +2,7 @@
   <h1 class="text-center">Hair Styles</h1>
 
   <!-- Button to open the modal -->
-  <div class=" mb-3">
+  <div class="mb-3">
     <button
       type="button"
       class="btn btn-outline-danger"
@@ -13,7 +13,7 @@
     </button>
   </div>
 
-  <!-- Modal -->
+  <!-- Modal for adding new hairstyle -->
   <div
     class="modal fade"
     id="addHairStyleModal"
@@ -24,7 +24,6 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-danger">
-          <!-- Affichage conditionnel de l'alerte de succès -->
           <h5 class="modal-title text-light" id="addHairStyleModalLabel">Add New HairStyle</h5>
           <button
             type="button"
@@ -35,6 +34,7 @@
         </div>
         <div class="modal-body">
           <form (ngSubmit)="addHairStyle()">
+            <!-- Name Field -->
             <div class="mb-3">
               <label for="name" class="form-label">Name:*</label>
               <input
@@ -45,6 +45,8 @@
                 required
               />
             </div>
+
+            <!-- Description Field -->
             <div class="mb-3">
               <label for="description" class="form-label">Description:*</label>
               <input
@@ -55,8 +57,10 @@
                 required
               />
             </div>
+
+            <!-- Hair Type Field -->
             <div class="mb-3">
-              <label for="hairType" class="form-label">Hair Type (comma-separated):*</label>
+              <label for="hairType" class="form-label">Hair Type:*</label>
               <select
                 id="hairType"
                 class="form-select"
@@ -64,14 +68,14 @@
                 name="hairType"
                 required
               >
-                <option [value]="0"> Straight</option>
+                <option [value]="0">Straight</option>
                 <option [value]="1">Wavy</option>
                 <option [value]="2">Curly</option>
                 <option [value]="3">Coily</option>
               </select>
-
-
             </div>
+
+            <!-- Length Field -->
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="length" class="form-label">Length:*</label>
@@ -86,6 +90,8 @@
                   required
                 />
               </div>
+
+              <!-- Sex Field -->
               <div class="col-md-6 mb-3">
                 <label for="sex" class="form-label">Sex:*</label>
                 <select
@@ -97,10 +103,12 @@
                 >
                   <option [value]="0">Male</option>
                   <option [value]="1">Female</option>
-                  <option [value]="2">Autre</option>
+                  <option [value]="2">Other</option>
                 </select>
               </div>
             </div>
+
+            <!-- Average Time and Maintenance Level -->
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="averageTime" class="form-label">Average Time:*</label>
@@ -127,6 +135,8 @@
                 />
               </div>
             </div>
+
+            <!-- Created By and Modified By -->
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="createdBy" class="form-label">Created By:*</label>
@@ -138,10 +148,8 @@
                   required
                 />
               </div>
-            </div>
-            <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="modifiedBy" class="form-label">Modified By:*</label>
+                <label for="modifiedBy" class="form-label">Modified By:</label>
                 <input
                   id="modifiedBy"
                   class="form-control"
@@ -150,6 +158,8 @@
                 />
               </div>
             </div>
+
+            <!-- Is Active Field -->
             <div class="mb-3">
               <label for="isActive" class="form-label">Is Active:*</label>
               <select
@@ -162,17 +172,17 @@
                 <option [value]="false">No</option>
               </select>
             </div>
+
+            <!-- Buttons -->
             <div class="text-end">
               <button
                 type="button"
                 class="btn btn-dark col-2 me-2"
                 data-bs-dismiss="modal"
-
               >
                 Close
               </button>
               <button type="submit" class="btn btn-danger col-2">Add</button>
-
             </div>
           </form>
         </div>
@@ -180,69 +190,64 @@
     </div>
   </div>
 
-  <!-- List of HairStyles -->
+  <!-- Table for displaying Hair Styles -->
   <div class="table-container mat-elevation-z8 bg-light">
     <table mat-table [dataSource]="dataSource" class="custom-table mat-table" matSort>
-      <!-- Numéro de ligne -->
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef >#</th>
-        <td mat-cell *matCellDef="let row; let i = index" > {{ i + 1 }} </td>
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
       </ng-container>
 
-      <!-- Nom -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef > Name </th>
-        <td mat-cell *matCellDef="let element" > {{ element.name }} </td>
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
-      <!-- Description -->
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef > Description </th>
-        <td mat-cell *matCellDef="let element" > {{ element.description }} </td>
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
       </ng-container>
 
-      <!-- Hair Type -->
       <ng-container matColumnDef="hairType">
-        <th mat-header-cell *matHeaderCellDef> HairType </th>
-        <td mat-cell *matCellDef="let element"> {{ element.hairType || '' }} </td>
+        <th mat-header-cell *matHeaderCellDef>Hair Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.hairType || '' }}</td>
       </ng-container>
 
-      <!-- Length -->
       <ng-container matColumnDef="length">
-        <th mat-header-cell *matHeaderCellDef > Length </th>
-        <td mat-cell *matCellDef="let element" > {{ element.length }} </td>
+        <th mat-header-cell *matHeaderCellDef>Length</th>
+        <td mat-cell *matCellDef="let element">{{ element.length }}</td>
       </ng-container>
 
-      <!-- Sex -->
       <ng-container matColumnDef="sex">
-        <th mat-header-cell *matHeaderCellDef > Sex </th>
-        <td mat-cell *matCellDef="let element" > {{ element.sex === 1 ? 'Male' : 'Female' }} </td>
+        <th mat-header-cell *matHeaderCellDef>Sex</th>
+        <td mat-cell *matCellDef="let element">{{ element.sex === 1 ? 'Male' : 'Female' }}</td>
       </ng-container>
 
-      <!-- Average Time -->
       <ng-container matColumnDef="averageTime">
-        <th mat-header-cell *matHeaderCellDef > Average Time </th>
-        <td mat-cell *matCellDef="let element" > {{ element.averageTime }} </td>
+        <th mat-header-cell *matHeaderCellDef>Average Time</th>
+        <td mat-cell *matCellDef="let element">{{ element.averageTime }}</td>
       </ng-container>
 
-      <!-- Maintenance Level -->
       <ng-container matColumnDef="maintenanceLevel">
-        <th mat-header-cell *matHeaderCellDef > Maintenance Level </th>
-        <td mat-cell *matCellDef="let element" > {{ element.maintenanceLevel }} </td>
+        <th mat-header-cell *matHeaderCellDef>Maintenance Level</th>
+        <td mat-cell *matCellDef="let element">{{ element.maintenanceLevel }}</td>
       </ng-container>
 
-      <!-- Action -->
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef class="text-center"> Action </th>
+        <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-          <button class="btn btn-outline-danger">View</button>
+          <button
+            class="btn btn-primary btn-sm"
+            (click)="viewHairStyleDetails(element.id)"
+            data-bs-toggle="modal"
+            data-bs-target="#viewHairStyleModal"
+          >
+            View
+          </button>
         </td>
       </ng-container>
 
-
-      <!-- Header Row -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <!-- Data Rows -->
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
@@ -253,5 +258,77 @@
       showFirstLastButtons
     ></mat-paginator>
   </div>
-
 </div>
+
+<!-- Modal Bootstrap -->
+<div
+  class="modal fade"
+  id="viewHairStyleModal"
+  tabindex="-1"
+  aria-labelledby="viewHairStyleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewHairStyleModalLabel">Hair Style Details</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedHairStyle">
+        <div class="row">
+          <!-- Colonne gauche : Information de base -->
+          <div class="col-md-6 mb-4">
+            <div class="card shadow-lg rounded-3 border-light">
+              <div class="card-body">
+                <h5 class="card-title text-dark">Hair Style Overview</h5>
+                <div class="mb-3">
+                  <p class="card-text"><strong>Name:</strong> <span class="text-muted">{{ selectedHairStyle.name }}</span></p>
+                </div>
+                <div class="mb-3">
+                  <p class="card-text"><strong>Description:</strong> <span class="text-muted">{{ selectedHairStyle.description }}</span></p>
+                </div>
+                <div class="mb-3">
+                  <p class="card-text"><strong>Hair Type:</strong> <span class="text-muted">{{ selectedHairStyle.hairType }}</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Colonne droite : Détails supplémentaires -->
+          <div class="col-md-6 mb-4">
+            <div class="card shadow-lg rounded-3 border-light">
+              <div class="card-body">
+                <h5 class="card-title text-dark">Details & Info</h5>
+                <div class="mb-3">
+                  <p class="card-text"><strong>Length:</strong> <span class="text-muted">{{ selectedHairStyle.length }}</span></p>
+                </div>
+                <div class="mb-3">
+                  <p class="card-text"><strong>Average Time:</strong> <span class="text-muted">{{ selectedHairStyle.averageTime }} minutes</span></p>
+                </div>
+                <div class="mb-3">
+                  <p class="card-text"><strong>Maintenance Level:</strong> <span class="text-muted">{{ selectedHairStyle.maintenanceLevel }}</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
